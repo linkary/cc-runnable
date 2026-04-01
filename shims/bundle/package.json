@@ -1,0 +1,7 @@
+{
+  "name": "bundle",
+  "version": "0.0.0",
+  "description": "Runtime shim for bun:bundle (build-time feature flags)",
+  "main": "index.ts",
+  "types": "index.ts"
+}
