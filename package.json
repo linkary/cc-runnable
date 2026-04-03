@@ -15,8 +15,8 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "dev": "bun run ./src/bootstrap-entry.ts",
-    "start": "bun run ./src/bootstrap-entry.ts",
+    "dev": "USER_TYPE=ant bun run ./src/bootstrap-entry.ts",
+    "start": "USER_TYPE=ant bun run ./src/bootstrap-entry.ts",
     "version": "bun run ./src/bootstrap-entry.ts --version",
     "dev:restore-check": "bun run ./src/dev-entry.ts"
   },

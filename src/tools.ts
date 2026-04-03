@@ -13,15 +13,24 @@ import { TaskStopTool } from './tools/TaskStopTool/TaskStopTool.js'
 import { BriefTool } from './tools/BriefTool/BriefTool.js'
 // Dead code elimination: conditional import for ant-only tools
 /* eslint-disable custom-rules/no-process-env-top-level, @typescript-eslint/no-require-imports */
-const REPLTool =
-  process.env.USER_TYPE === 'ant'
-    ? require('./tools/REPLTool/REPLTool.js').REPLTool
-    : null
-const SuggestBackgroundPRTool =
-  process.env.USER_TYPE === 'ant'
-    ? require('./tools/SuggestBackgroundPRTool/SuggestBackgroundPRTool.js')
+let REPLTool: Tool | null = null
+if (process.env.USER_TYPE === 'ant') {
+  try {
+    REPLTool = require('./tools/REPLTool/REPLTool.js').REPLTool
+  } catch {
+    // REPLTool not restored from source maps
+  }
+}
+let SuggestBackgroundPRTool: Tool | null = null
+if (process.env.USER_TYPE === 'ant') {
+  try {
+    SuggestBackgroundPRTool =
+      require('./tools/SuggestBackgroundPRTool/SuggestBackgroundPRTool.js')
         .SuggestBackgroundPRTool
-    : null
+  } catch {
+    // SuggestBackgroundPRTool not restored from source maps
+  }
+}
 const SleepTool =
   feature('PROACTIVE') || feature('KAIROS')
     ? require('./tools/SleepTool/SleepTool.js').SleepTool
